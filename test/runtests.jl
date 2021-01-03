@@ -1,5 +1,5 @@
 using PotentialMap
-using OrdinaryDiffEq
+using SteadyStateDiffEq
 using Test
 
 @testset "PotentialMap.jl" begin
