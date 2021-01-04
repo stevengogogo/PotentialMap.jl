@@ -17,9 +17,17 @@ sols = solve(de, param_gen)
 # Remove similar solutions
 steadies = unique(sols)
 
+<<<<<<< HEAD
 # Jacobian
 jac_ms = j_gen.(steadies)
 
+=======
+
+# Jacobian
+jac_ms = j_gen.(steadies)
+
+
+>>>>>>> 0ad723ce3250776a20faeb03c0f8b5e1160b8d8d
 # Stability
 stab_modes = StabilityType.(jac_ms)
 
