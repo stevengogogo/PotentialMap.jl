@@ -11,6 +11,7 @@ SteadyStateDiffEq = "9672c7b4-1e72-59bd-8a11-6ac3964bc41f"
 
 [compat]
 Parameters = "0.12"
+SteadyStateDiffEq = "1.5"
 julia = "1.5"
 
 [extras]
