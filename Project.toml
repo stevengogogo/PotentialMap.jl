@@ -10,6 +10,7 @@ Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
 SteadyStateDiffEq = "9672c7b4-1e72-59bd-8a11-6ac3964bc41f"
 
 [compat]
+FindSteadyStates = "0.1"
 Parameters = "0.12"
 julia = "1.5"
 
