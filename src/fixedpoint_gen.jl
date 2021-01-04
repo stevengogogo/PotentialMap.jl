@@ -19,7 +19,7 @@ Arguements
 function fixedpoint_gen(func, u0, p, ranges; MaxIter=10000, UniqSpac=8)
 
 ssmethod = SSRootfind(nlsolve = (f,u0,abstol) -> (
-    res=NLsolve.nlsolve(f,u0, autodiff=:forward, iterations= MaxIter,ftol=abstol);
+    res=nlsolve(f,u0, autodiff=:forward, iterations= MaxIter,ftol=abstol);
     res.zero
     ))
 
