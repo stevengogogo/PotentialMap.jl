@@ -2,7 +2,9 @@
 Test the diffusion function generate the matrix which is square and with same length with the dimension of ODE.
 =#
 
+include("SampleDE.jl")
 
+import .SampleDE:u0
 
 m_diff = PotentialMap.DiffusionMatrix(length(u0))
 
