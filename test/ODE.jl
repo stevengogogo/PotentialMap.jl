@@ -15,6 +15,8 @@ Reference
 1. Source code from https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-017-15889-2/MediaObjects/41598_2017_15889_MOESM2_ESM.rar
 =#
 
+module SampleDE
+
 """
 Reference
 ---------
@@ -56,3 +58,6 @@ ODE_features = Dict(
     "UnstableStates" => [(-2.27,-0.23) ,  (2.17,0.22), (-0.12,-2.23),   (0.33,2.22), (0.1,0.01)],
     "SteadyStates" => [(-2.39,2.35),(2.3,-2.34), (-2.18,-2.12),   (2.06,2.12), (-2.27,-0.23) ,  (2.17,0.22), (-0.12,-2.23),   (0.33,2.22) ,(0.1,0.01)]
 )
+
+
+end

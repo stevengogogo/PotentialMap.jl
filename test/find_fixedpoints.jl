@@ -7,6 +7,7 @@ Reference
 =#
 
 include("ODE.jl")
+import .SampleDE: ODE!, u0, p_, ODE_features
 
 steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(ODE!, u0, p_, [-10.:1.0:10.,-10.:1.0:10.])
 

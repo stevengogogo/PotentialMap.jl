@@ -1,6 +1,3 @@
-export fixedpoint_gen
-
-
 """
     fixedpoint_gen(func, u0, p, ranges; MaxIter=1000, UniqSpac=8)
     fixedpoint_gen(func, p, ranges; MaxIter=1000, UniqSpac=8)

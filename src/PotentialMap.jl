@@ -4,9 +4,15 @@ using FindSteadyStates
 using SteadyStateDiffEq
 using NLsolve
 using LinearAlgebra
-# Write your package code here.
+using ModelingToolkit
+
+
 include("fixedpoint_gen.jl")
 include("DiffusionMatrix.jl")
 include("gradient_gen.jl")
+
+
+export fixedpoint_gen
+export gradient_gen
 
 end
