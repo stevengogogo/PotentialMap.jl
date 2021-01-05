@@ -14,7 +14,7 @@ function (self::GradFunc)(dt, X)
     expr =  [ModelingToolkit.substitute(i, vars) for i in self.VecOfEq]
     val = ModelingToolkit.expand_derivatives.(expr)
     
-    return val * 2
+    return val 
 end
 
 """
@@ -39,6 +39,7 @@ function gradient_gen(ODE!, p, dim, N)
         S = S + (1/4)*dt* (Δ(X,k,dt) - dxdt)' * (D)^(-1) * (Δ(X,k,dt) - dxdt )
     end
 
+    S = 2*S # TO get the right answer
    
     ret = ModelingToolkit.gradient(S, collect(Iterators.flatten(X)) )
 
