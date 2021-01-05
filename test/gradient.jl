@@ -16,4 +16,5 @@ gradient_func = gradient_gen(ODE!, p_, 2, 2)
 @test gradient_func(1., ones(6,1)) == SampleDE.gradient(1., ones(6,1))
 @test gradient_func(1., 2*ones(6,1)) == SampleDE.gradient(1., 2*ones(6,1))
 @test gradient_func(1., zeros(6,1)) == SampleDE.gradient(1., zeros(6,1))
+@test gradient_func(2., ones(6,1)) == SampleDE.gradient(2., ones(6,1))
 end

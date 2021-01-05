@@ -11,11 +11,10 @@ function (self::GradFunc)(dt, X)
         vars[self.Variables[i]] = X[i]
     end
     vars[self.dt] = dt 
-    @show vars
     expr =  [ModelingToolkit.substitute(i, vars) for i in self.VecOfEq]
     val = ModelingToolkit.expand_derivatives.(expr)
     
-    return val
+    return val * 2
 end
 
 """
