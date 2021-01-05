@@ -1,7 +1,6 @@
 #=
 Test the diffusion function generate the matrix which is square and with same length with the dimension of ODE.
 =#
-include("ODE.jl")
 
 
 

@@ -1,6 +1,7 @@
 using PotentialMap
 using SteadyStateDiffEq
 using Test
+using FindSteadyStates
 
 @testset "PotentialMap.jl" begin
 
