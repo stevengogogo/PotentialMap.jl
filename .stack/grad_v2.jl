@@ -1,4 +1,3 @@
-
 struct GradFunc
     VecOfEq
     Variables 
@@ -41,14 +40,11 @@ function gradient_gen(ODE!, p, dim, N)
 
     S = 2*S # TO get the right answer
     S = ModelingToolkit.simplify(S)
-
-    vecX =  collect(Iterators.flatten(X))
-    os = OptimizationSystem(S, vecX, [dt])
    
-    ret = ModelingToolkit.generate_gradient(S, dvs=vecX, ps=[dt] ,expression = Val{false} )[2]
+    ret = ModelingToolkit.gradient(S, collect(Iterators.flatten(X)) )[2]
 
-    #ret = ModelingToolkit.simplify(ret)
-    #ret=reshape(ret,dim,:) # Matrix
+    ret = ModelingToolkit.simplify(ret)
+    ret=reshape(ret,dim,:) # Matrix
 
 
     return GradFunc(ret, X, dt)
