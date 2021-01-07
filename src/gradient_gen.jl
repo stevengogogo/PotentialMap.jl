@@ -1,20 +1,14 @@
 
 struct GradFunc
-    VecOfEq
-    Variables 
-    dt
+    function_arg
+    S_func 
+    dim
+    N 
+    len_arg 
 end
 
 function (self::GradFunc)(dt, X)
-    vars = Dict()
-    for i in eachindex(self.Variables)
-        vars[self.Variables[i]] = X[i]
-    end
-    vars[self.dt] = dt 
-    expr =  [ModelingToolkit.substitute(i, vars) for i in self.VecOfEq]
-    val = ModelingToolkit.expand_derivatives.(expr)
-    
-    return val 
+    return grad_func(dt,X, self.S_func)  # Output gradient
 end
 
 """
@@ -40,19 +34,23 @@ function gradient_gen(ODE!, p, dim, N)
     end
 
     S = 2*S # TO get the right answer
-    S = ModelingToolkit.simplify(S)
 
     vecX =  collect(Iterators.flatten(X))
-    os = OptimizationSystem(S, vecX, [dt])
+    vec = collect([dt, vecX...])
+    S_func = build_function(S,vec, expression=Val{false}) # S_func( [dt Xs])
    
-    ret = ModelingToolkit.generate_gradient(S, dvs=vecX, ps=[dt] ,expression = Val{false} )[2]
+
+    #ret = ModelingToolkit.generate_gradient(S, dvs=vecX, ps=[dt] ,expression = Val{false} )[2]
 
     #ret = ModelingToolkit.simplify(ret)
     #ret=reshape(ret,dim,:) # Matrix
 
 
-    return GradFunc(ret, X, dt)
+    return GradFunc(vec, S_func, dim, N, dim*N)
 end
+
+
+grad_func(dt,Xs, S_func) = ForwardDiff.gradient(S_func, [dt,Xs...])[2:end] # Index 1 is df/dt
 
 
 function get_dxdt(ODE!, x, p; t=nothing)

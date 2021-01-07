@@ -7,11 +7,11 @@ Reference
 =#
 
 include("SampleDE.jl")
-import .SampleDE: ODE!, u0, p_, ODE_features
+import .SampleDE: ODE!, u0, p, ODE_features
 
-steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(ODE!, u0, p_, [-10.:1.0:10.,-10.:1.0:10.])
+steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(ODE!, u0, p, [-10.:1.0:10.,-10.:1.0:10.])
 
-steadies2, jac_ms2, stab_modes2 = PotentialMap.fixedpoint_gen(ODE!, p_, [-10.:1.0:10.,-10.:1.0:10.])
+steadies2, jac_ms2, stab_modes2 = PotentialMap.fixedpoint_gen(ODE!, p, [-10.:1.0:10.,-10.:1.0:10.])
 
 
 
