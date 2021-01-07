@@ -40,6 +40,7 @@ function gradient_gen(ODE!, p, dim, N)
     end
 
     S = 2*S # TO get the right answer
+    S = ModelingToolkit.simplify(S)
    
     ret = ModelingToolkit.gradient(S, collect(Iterators.flatten(X)) )
 
