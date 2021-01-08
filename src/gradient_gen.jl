@@ -1,4 +1,6 @@
-
+"""
+    Gradient function
+"""
 struct GradFunc
     function_arg
     S_func 
@@ -53,9 +55,3 @@ function get_dxdt(ODE!, x, p; t=nothing)
     return dx
 end
 
-"""
-Differentiation
-"""
-function Δ(X,k,dt)
-    return (X[:,k] - X[:, k-1])/dt
-end

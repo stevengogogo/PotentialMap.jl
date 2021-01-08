@@ -7,7 +7,7 @@ using LinearAlgebra
 using ModelingToolkit
 using ForwardDiff
 
-
+include("utils.jl")
 include("fixedpoint_gen.jl")
 include("DiffusionMatrix.jl")
 include("gradient_gen.jl")
