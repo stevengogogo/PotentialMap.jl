@@ -5,6 +5,7 @@ using SteadyStateDiffEq
 using NLsolve
 using LinearAlgebra
 using ModelingToolkit
+using ForwardDiff
 
 
 include("fixedpoint_gen.jl")
