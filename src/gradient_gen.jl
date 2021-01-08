@@ -33,18 +33,12 @@ function gradient_gen(ODE!, p, dim, N)
         S = S + (1/4)*dt* (Δ(X,k,dt) - dxdt)' * (D)^(-1) * (Δ(X,k,dt) - dxdt )
     end
 
-    S = 2*S # TO get the right answer
+    S = 2*S # get the right answer
 
     vecX =  collect(Iterators.flatten(X))
     vec = collect([dt, vecX...])
     S_func = build_function(S,vec, expression=Val{false}) # S_func( [dt Xs])
    
-
-    #ret = ModelingToolkit.generate_gradient(S, dvs=vecX, ps=[dt] ,expression = Val{false} )[2]
-
-    #ret = ModelingToolkit.simplify(ret)
-    #ret=reshape(ret,dim,:) # Matrix
-
 
     return GradFunc(vec, S_func, dim, N, dim*N)
 end
