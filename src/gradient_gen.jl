@@ -10,7 +10,7 @@ struct GradFunc
 end
 
 function (self::GradFunc)(dt, X)
-    return grad_func(dt,X, self.S_func)  # Output gradient
+    return reshape(grad_func(dt,X, self.S_func), self.dim, self.N)  # Output gradient
 end
 
 """
@@ -34,8 +34,6 @@ function gradient_gen(ODE!, p, dim, N)
         dxdt = get_dxdt(ODE!, X[:,k-1], p)
         S = S + (1/4)*dt* (Δ(X,k,dt) - dxdt)' * (D)^(-1) * (Δ(X,k,dt) - dxdt )
     end
-
-    S = 2*S # get the right answer
 
     vecX =  collect(Iterators.flatten(X))
     vec = collect([dt, vecX...])

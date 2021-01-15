@@ -3,6 +3,10 @@ using SteadyStateDiffEq
 using Test
 using FindSteadyStates
 
+
+include("SampleDE.jl")
+sp = SampleDE 
+
 @testset "PotentialMap.jl" begin
 
     @testset "Generate diffusion matrix" begin
@@ -11,5 +15,13 @@ using FindSteadyStates
 
     @testset "Wrapper of FindSteadyStates" begin 
         include("find_fixedpoints.jl")
+    end
+
+    @testset "gradient calculation compared to the reference" begin
+        include("gradient.jl")
+    end 
+
+    @testset "LeastAction" begin
+        include("LeastAction.jl")
     end
 end

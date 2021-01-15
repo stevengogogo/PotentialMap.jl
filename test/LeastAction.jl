@@ -6,18 +6,16 @@ Reference
 - `run.m`
 """
 
-include("SampleDE.jl")
-import .SampleDE: ODE, u0, p, ODE!
 
 
 # Find Steady States
-steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(ODE!, u0, p, [-10.:1.0:10.,-10.:1.0:10.])
+steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(sp.ODE!, sp.u0, sp.p, [-10.:1.0:10.,-10.:1.0:10.])
 
 
 # Generate Gradient function 
 TotalTime = 2
 TotalPoint = 10 
-gradfunc = gradient_gen(ODE!, p, length(u0), TotalPoint)
+gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
 
 
 
@@ -30,7 +28,7 @@ initpath = PotentialMap.linearpath(point_start, point_end, TotalPoint)
 
 
 # Integration 
-PotentialMap.integral(initpath, ODE, PotentialMap.DiffusionMatrix, 0.1, p )
+PotentialMap.integral(initpath, sp.ODE, PotentialMap.DiffusionMatrix, 0.1, sp.p )
 
 # Gradient 
 PotentialMap.grad(initpath, gradfunc, dt)
