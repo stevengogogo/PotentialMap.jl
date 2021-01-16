@@ -25,7 +25,11 @@ grad = map(y->y, gradient_func(0.1, v));
 
 end;
 
+# Gradient function : mutated
+a = ones(6,1)
+x = deepcopy(a)
+g! = PotentialMap.grad!(gradient_func, 0.1, 2, 3)
 
+g!(a, x)
 
-PotentialMap.grad!(gradient_func, 0.1, 2, 3)
-grad!(ones(6,1))
+@test a ≂̸ a_

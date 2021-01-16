@@ -40,7 +40,7 @@ Return
 ------
 - `op` {Optim.MultivariateOptimizationResults} : keywords. `ls_success` (success of optimization). Use `Optim.minimizer` function to get the arg minimum.
 """
-function action(n_points, tmax, point_start, point_end, ode!, p, DiffusionMatrix)
+function action(n_points, tmax, point_start, point_end, ode!, p, Jacobian, DiffusionMatrix)
 
     dim = length(point_start)
     dt = tmax/n_points 
@@ -51,9 +51,9 @@ function action(n_points, tmax, point_start, point_end, ode!, p, DiffusionMatrix
 
     # Function of curve integration
     curve_func = curve_ind(integral, ode!, DiffusionMatrix, dt, dim, n_points, p, nothing)
-
+    g! = grad(Jacobian, dt, dim, n_points)
     
-    op = optimize(curve_func, init_vec, LBFGS(); autodiff = :forward)
+    op = optimize(curve_func, g!, init_vec, ConjugateGradient())
 
     path = reshape(Optim.minimizer(op), size(initpath))
     lam = op.minimum
@@ -84,17 +84,17 @@ end
 """
 Gradient for optimzation
 """
-struct grad!
+struct grad
     Jacobian
     dt 
     dim 
     N 
 end
 
-function (self::grad!)(x)
+function (self::grad)(G, x)
     x_ = reshape(x, self.dim, self.N)
     
     m_jac = self.Jacobian(self.dt, x_)
 
-    x = reshape(m_jac, size(x))
+    G[:] = reshape(m_jac, size(x))
 end
