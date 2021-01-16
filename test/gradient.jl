@@ -32,4 +32,4 @@ g! = PotentialMap.grad!(gradient_func, 0.1, 2, 3)
 
 g!(a, x)
 
-@test a ≂̸ a_
+@test a != a_
