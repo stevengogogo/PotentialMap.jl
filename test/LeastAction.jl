@@ -38,7 +38,7 @@ ref_i = 5
 ops = []
 @info steadies1[ref_i]
 for i in 1:length(steadies1)
-    op = action(TotalPoint, TotalTime, steadies1[ref_i], steadies1[i], sp.ODE!, sp.p, gradfunc, PotentialMap.DiffusionMatrix)
+    op = action(TotalPoint, TotalTime, steadies1[i], steadies1[ref_i], sp.ODE!, sp.p, gradfunc, PotentialMap.DiffusionMatrix)
     push!(ops, op)
 
     @show op.lam
