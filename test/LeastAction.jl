@@ -14,7 +14,7 @@ steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(sp.ODE!, sp.u0, sp
 
 # Generate Gradient function 
 TotalTime = 2.
-TotalPoint = 100
+TotalPoint = 350
 gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
 
 
