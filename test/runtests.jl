@@ -1,7 +1,8 @@
 using PotentialMap
 using SteadyStateDiffEq
-using Test
 using FindSteadyStates
+using Test
+
 
 
 include("SampleDE.jl")

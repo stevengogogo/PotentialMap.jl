@@ -1,3 +1,15 @@
+struct curve_ind
+    points 
+    func # ODE function (du, u,p, t)
+    DiffusionMatrix
+    dt 
+    p
+    t 
+end
+
+"""
+Least Action Method
+"""
 function action(n_points, tmax, point_start, point_end, Function, Jacobian, DiffusionMatrix)
 
     dim = size(n_points)[1] 
@@ -6,10 +18,7 @@ function action(n_points, tmax, point_start, point_end, Function, Jacobian, Diff
     # A straight line from A → B
     initpath = linearpath(point_start, point_end, n_points)
 
-
-
-
-    
+      
     return nothing
 
 end
@@ -30,14 +39,11 @@ function integral(points, func, DiffusionMatrix, dt, p; t=nothing)
     return integral
 end
 
+
+"""
+Gradient for optimzation
+"""
 function grad(points, Jacobian, dt)
 
-    grad_ = [];
-    for i in 2:size(points)[2]-1
-        @show i
-        gradTemp = Jacobian(dt, points[:, i-1:i+1])
-        grad_ = [grad_ ,gradTemp[:,2]]
-    end
-
-    return grad_
+    return Jacobian(dt, points)
 end
