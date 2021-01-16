@@ -6,6 +6,8 @@ using NLsolve
 using LinearAlgebra
 using ModelingToolkit
 using ForwardDiff
+using Optim
+using Parameters
 
 include("utils.jl")
 include("fixedpoint_gen.jl")

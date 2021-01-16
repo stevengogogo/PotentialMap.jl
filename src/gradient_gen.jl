@@ -21,7 +21,6 @@ Arguement
 - `N` {Integer}: Sections of time intervals
 """
 function gradient_gen(ODE!, p, dim, N)
-    N = N + 1
 
     @variables X[1:dim, 1:N]
     @parameters dt 

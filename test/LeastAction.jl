@@ -28,7 +28,10 @@ initpath = PotentialMap.linearpath(point_start, point_end, TotalPoint)
 
 
 # Integration 
-PotentialMap.integral(initpath, sp.ODE, PotentialMap.DiffusionMatrix, 0.1, sp.p )
+PotentialMap.integral(initpath, sp.ODE!, PotentialMap.DiffusionMatrix, 0.1, sp.p )
 
 # Gradient 
 PotentialMap.grad(initpath, gradfunc, dt)
+
+# Least action 
+action(TotalPoint, 100., [2.1724,0.2194], [0.3291,2.2194], sp.ODE!, sp.p, PotentialMap.DiffusionMatrix)

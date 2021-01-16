@@ -16,7 +16,7 @@ end
 
 function linearpath(point_start, point_end, TotalPoint)
     
-    initpath = point_start*ones(1,TotalPoint +1) 
+    initpath = point_start*ones(1,TotalPoint ) 
 
     for i in 1:size(initpath)[2]
         step = (point_end - point_start)*i/size(initpath)[2]
