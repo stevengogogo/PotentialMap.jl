@@ -14,7 +14,7 @@ steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(sp.ODE!, sp.u0, sp
 
 # Generate Gradient function 
 TotalTime = 2
-TotalPoint = 10 
+TotalPoint = 350
 gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
 
 
@@ -34,4 +34,27 @@ PotentialMap.integral(initpath, sp.ODE!, PotentialMap.DiffusionMatrix, 0.1, sp.p
 PotentialMap.grad(initpath, gradfunc, dt)
 
 # Least action 
-action(TotalPoint, 100., [2.1724,0.2194], [0.3291,2.2194], sp.ODE!, sp.p, PotentialMap.DiffusionMatrix)
+ref_i = 5
+ops = []
+@info steadies1[ref_i]
+for i in 1:length(steadies1)
+    op = action(TotalPoint, 350., steadies1[ref_i], steadies1[i], sp.ODE!, sp.p, PotentialMap.DiffusionMatrix)
+    push!(ops, op)
+end
+
+
+# Plot 
+
+fig, ax = plt.subplots()
+
+
+ax.scatter([i[1] for i in steadies1], [i[2] for i in steadies1], color="black")
+ax.scatter( steadies1[ref_i]..., color="red")
+
+for op in ops 
+    xs = op.path[1,:]
+    ys = op.path[2,:]
+    ax.plot(xs, ys)
+end 
+
+plt.display_figs()

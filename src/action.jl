@@ -1,3 +1,11 @@
+
+struct LeastActionResult
+    path 
+    lam # Least action energy
+    res 
+end
+
+
 @with_kw struct curve_ind
     integral_func
     func! # ODE function (du, u,p, t)
@@ -23,6 +31,14 @@ Arguements
 ----------
 - `n_points` {Integer}: Number of time points 
 - `tmax` {Float}: maximum time 
+- `point_start` {Array}: initial variables
+- `point_end` {Array}: final state 
+- `ode!` {Function}: ODE function (non-allocation type) f(du,u,p,t)
+- `p` {Array}: parameters `p` of `ode!`
+
+Return
+------
+- `op` {Optim.MultivariateOptimizationResults} : keywords. `ls_success` (success of optimization). Use `Optim.minimizer` function to get the arg minimum.
 """
 function action(n_points, tmax, point_start, point_end, ode!, p, DiffusionMatrix)
 
@@ -37,9 +53,12 @@ function action(n_points, tmax, point_start, point_end, ode!, p, DiffusionMatrix
     curve_func = curve_ind(integral, ode!, DiffusionMatrix, dt, dim, n_points, p, nothing)
 
     
-    op = Optim.minimizer(optimize(curve_func, init_vec, BFGS(); autodiff = :forward))  
+    op = optimize(curve_func, init_vec, LBFGS(); autodiff = :forward)
 
-    return op
+    path = reshape(Optim.minimizer(op), size(initpath))
+    lam = op.minimum
+
+    return LeastActionResult(path, lam, op)
 
 end
 

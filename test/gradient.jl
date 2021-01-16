@@ -7,7 +7,7 @@ Reference
 
 
 # gradient_func(dt, X)
-gradient_func = gradient_gen(sp.ODE!, sp.p, 2, 2)
+gradient_func = gradient_gen(sp.ODE!, sp.p, 2, 3)
 
 @testset "Gradient Results" begin 
 @test gradient_func(1., ones(6,1)) == sp.gradient(1., ones(6,1))

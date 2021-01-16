@@ -1,11 +1,12 @@
 using PotentialMap
 using SteadyStateDiffEq
 using FindSteadyStates
+using PyPlot
 using Test
 
-
-
 include("SampleDE.jl")
+
+plt=PyPlot
 sp = SampleDE 
 
 @testset "PotentialMap.jl" begin
