@@ -13,9 +13,9 @@ steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(sp.ODE!, sp.u0, sp
 
 
 # Generate Gradient function 
-TotalTime = 2
+TotalTime = 2.
 TotalPoint = 350
-gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
+#gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
 
 
 
@@ -38,7 +38,7 @@ ref_i = 5
 ops = []
 @info steadies1[ref_i]
 for i in 1:length(steadies1)
-    op = action(TotalPoint, 350., steadies1[ref_i], steadies1[i], sp.ODE!, sp.p, PotentialMap.DiffusionMatrix)
+    op = action(TotalPoint, TotalTime, steadies1[ref_i], steadies1[i], sp.ODE!, sp.p, PotentialMap.DiffusionMatrix)
     push!(ops, op)
 end
 
