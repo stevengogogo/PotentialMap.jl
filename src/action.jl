@@ -84,7 +84,17 @@ end
 """
 Gradient for optimzation
 """
-function grad(points, Jacobian, dt)
+struct grad!
+    Jacobian
+    dt 
+    dim 
+    N 
+end
 
-    return Jacobian(dt, points)
+function (self::grad!)(x)
+    x_ = reshape(x, self.dim, self.N)
+    
+    m_jac = self.Jacobian(self.dt, x_)
+
+    x = reshape(m_jac, size(x))
 end

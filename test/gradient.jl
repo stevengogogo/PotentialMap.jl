@@ -24,3 +24,8 @@ grad = map(y->y, gradient_func(0.1, v));
 @test grad ≈ sp.gradient(0.1, v);
 
 end;
+
+
+
+PotentialMap.grad!(gradient_func, 0.1, 2, 3)
+grad!(ones(6,1))
