@@ -13,7 +13,8 @@ jobs:
           - '1.5'
           - 'nightly'
         os:
-           - self-hosted
+           - TWCC
+           #- self-hosted
            #- ubuntu-latest
            #- macOS-latest
            #- windows-latest
