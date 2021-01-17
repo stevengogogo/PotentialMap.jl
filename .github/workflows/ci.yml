@@ -13,9 +13,10 @@ jobs:
           - '1.5'
           - 'nightly'
         os:
-          - ubuntu-latest
-          - macOS-latest
-          - windows-latest
+           - self-hosted
+           #- ubuntu-latest
+           #- macOS-latest
+           #- windows-latest
         arch:
           - x64
     steps:
