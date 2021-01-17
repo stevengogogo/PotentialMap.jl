@@ -12,7 +12,7 @@ jobs:
         version:
           - '1.5'
         os:
-           - TWCC
+           - [self-hosted, TWCC, Linux]
            #- self-hosted
            #- ubuntu-latest
            #- macOS-latest
@@ -43,7 +43,7 @@ jobs:
           file: lcov.info
   docs:
     name: Documentation
-    runs-on: TWCC
+    runs-on: [self-hosted, TWCC, Linux]
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
