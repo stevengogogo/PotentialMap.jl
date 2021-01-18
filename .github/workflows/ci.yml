@@ -47,7 +47,6 @@ jobs:
       - run: |
              julia --project=PotentialMap -e '
              using Pkg
-             Pkg.rm("FindSteadyStates")
              Pkg.add("https://github.com/stevengogogo/FindSteadyStates.jl")
              Pkg.add("PyCall")
              ENV["PYTHON"]=""
