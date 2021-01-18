@@ -27,7 +27,7 @@ end;
 
 # Gradient function : mutated
 a = ones(6,1)
-x = deepcopy(a)
+a_ = deepcopy(a)
 g! = LeastAction.grad!(gradient_func, 0.1, 2, 3)
 
 g!(a, x)

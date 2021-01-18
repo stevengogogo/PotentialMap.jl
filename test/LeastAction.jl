@@ -14,7 +14,7 @@ steadies1, jac_ms1, stab_modes1 = fixedpoint_gen(sp.ODE!, sp.u0, sp.p, [-10.:1.0
 
 # Generate Gradient function 
 TotalTime = 2.
-TotalPoint = 350
+TotalPoint = 50 # 350 in original paper
 gradfunc = gradient_gen(sp.ODE!, sp.p, length(sp.u0), TotalPoint)
 
 
@@ -31,7 +31,7 @@ initpath = LeastAction.linearpath(point_start, point_end, TotalPoint)
 LeastAction.integral(initpath, sp.ODE!, LeastAction.DiffusionMatrix, 0.1, sp.p )
 
 # Gradient 
-g! = LeastAction.grad(gradfunc, dt, length(point_start), TotalPoint)
+g! = LeastAction.grad!(gradfunc, dt, length(point_start), TotalPoint)
 
 # Least action 
 ref_i = 5

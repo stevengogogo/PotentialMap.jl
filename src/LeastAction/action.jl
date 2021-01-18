@@ -84,7 +84,7 @@ end
 """
 Gradient for optimzation
 """
-struct grad
+struct grad!
     Jacobian
     dt 
     dim 
