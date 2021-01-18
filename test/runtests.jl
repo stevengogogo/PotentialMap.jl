@@ -1,3 +1,4 @@
+@info "Start Testing"
 using PotentialMap
 using SteadyStateDiffEq
 using FindSteadyStates
@@ -6,9 +7,10 @@ using Test
 
 include("SampleDE.jl")
 
-plt=PyPlot
+plt= PyPlot
 sp = SampleDE 
 
+@info "Start Testing PotentialMap.LeastAction"
 @testset "PotentialMap.jl" begin
 
     @testset "Generate diffusion matrix" begin
@@ -23,7 +25,8 @@ sp = SampleDE
         include("gradient.jl")
     end 
 
+    @info "Start Measuring LeastAction"
     @testset "LeastAction" begin
-        include("LeastAction.jl")
+        #include("LeastAction.jl")
     end
 end

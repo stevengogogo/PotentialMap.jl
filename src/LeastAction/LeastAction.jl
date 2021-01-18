@@ -2,11 +2,11 @@ module LeastAction
 
 using FindSteadyStates
 using SteadyStateDiffEq
-using NLsolve
 using LinearAlgebra
 using ModelingToolkit
 using ForwardDiff
 using Optim
+using NLsolve
 using Parameters
 
 

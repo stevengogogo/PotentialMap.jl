@@ -2,7 +2,6 @@ module PotentialMap
 
 using FindSteadyStates
 using SteadyStateDiffEq
-using NLsolve
 using LinearAlgebra
 using ModelingToolkit
 using ForwardDiff
