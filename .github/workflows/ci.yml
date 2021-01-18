@@ -11,12 +11,12 @@ jobs:
       matrix:
         version:
           - '1.5'
-          #- 'nightly'
         os:
-          - [self-hosted, TWCC]
-          #- ubuntu-latest
-          #- macOS-latest
-          #- windows-latest
+           - [self-hosted, TWCC, Linux]
+           #- self-hosted
+           #- ubuntu-latest
+           #- macOS-latest
+           #- windows-latest
         arch:
           - x64
     steps:
@@ -57,4 +57,4 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           file: lcov.info
-  
+

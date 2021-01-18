@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 jobs:
   CompatHelper:
-    runs-on: [self-hosted, TWCC]
+    runs-on: [self-hosted, TWCC, Linux]
+
     steps:
       - name: Pkg.add("CompatHelper")
         run: julia -e 'using Pkg; Pkg.add("CompatHelper")'
