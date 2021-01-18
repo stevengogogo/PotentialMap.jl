@@ -76,7 +76,7 @@ jobs:
           julia --project=docs -e '
             using Pkg
             ENV["PYTHON"] = "" # avoid using internal python
-            Pkg.build
+            Pkg.build()
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
       - run: |
