@@ -47,6 +47,7 @@ jobs:
       - run: |
              julia --project=PotentialMap -e '
              using Pkg
+             Pkg.add("PyCall")
              ENV["PYTHON"]=""
              Pkg.build("PyCall")
              Pkg.instantiate()'
