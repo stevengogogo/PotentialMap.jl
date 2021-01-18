@@ -8,15 +8,12 @@ using ModelingToolkit
 using ForwardDiff
 using Optim
 using Parameters
+using Reexport 
 
-include("utils.jl")
-include("fixedpoint_gen.jl")
-include("DiffusionMatrix.jl")
-include("gradient_gen.jl")
-include("action.jl")
+include("LeastAction/LeastAction.jl")
 
-export fixedpoint_gen
-export gradient_gen
-export action
+
+@reexport using .LeastAction
+
 
 end
