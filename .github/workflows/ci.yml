@@ -34,7 +34,7 @@ jobs:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
       - name: Julia config
-        run: mkdir -p ~/.julia/config && cp ./startup.jl ~/.julia/config
+        run: mkdir -p ~/.julia/config && cp .github/workflows/startup.jl ~/.julia/config
       - uses: actions/cache@v1
         env:
           cache-name: cache-artifacts
