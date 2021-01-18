@@ -57,35 +57,4 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           file: lcov.info
-  docs:
-    name: Documentation
-    runs-on: [self-hosted, TWCC]
-    steps:
-      - name: Setup python 
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3'
-      - name: Install dependencies
-        run: |
-             python -m pip install --upgrade pip
-             pip install scipy numpy matplotlib 
-      - uses: actions/checkout@v2
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: '1'
-      - run: |
-          julia --project=docs -e '
-            using Pkg
-            ENV["PYTHON"] = "" # avoid using internal python
-            Pkg.build()
-            Pkg.develop(PackageSpec(path=pwd()))
-            Pkg.instantiate()'
-      - run: |
-          julia --project=docs -e '
-            using Documenter: doctest
-            using PotentialMap
-            doctest(PotentialMap)'
-      - run: julia --project=docs docs/make.jl
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+  
