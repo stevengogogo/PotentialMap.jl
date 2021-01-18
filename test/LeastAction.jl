@@ -9,7 +9,7 @@ Reference
 
 
 # Find Steady States
-steadies1, jac_ms1, stab_modes1 = PotentialMap.fixedpoint_gen(sp.ODE!, sp.u0, sp.p, [-10.:1.0:10.,-10.:1.0:10.])
+steadies1, jac_ms1, stab_modes1 = fixedpoint_gen(sp.ODE!, sp.u0, sp.p, [-10.:1.0:10.,-10.:1.0:10.])
 
 
 # Generate Gradient function 
@@ -24,21 +24,21 @@ point_start = [0.,0.]
 point_end = [1.,1.]
 dt = 1.0
 
-initpath = PotentialMap.linearpath(point_start, point_end, TotalPoint)
+initpath = LeastAction.linearpath(point_start, point_end, TotalPoint)
 
 
 # Integration 
-PotentialMap.integral(initpath, sp.ODE!, PotentialMap.DiffusionMatrix, 0.1, sp.p )
+LeastAction.integral(initpath, sp.ODE!, LeastAction.DiffusionMatrix, 0.1, sp.p )
 
 # Gradient 
-g! = PotentialMap.grad(gradfunc, dt, length(point_start), TotalPoint)
+g! = LeastAction.grad(gradfunc, dt, length(point_start), TotalPoint)
 
 # Least action 
 ref_i = 5
 ops = []
 @info steadies1[ref_i]
 for i in 1:length(steadies1)
-    op = action(TotalPoint, TotalTime, steadies1[i], steadies1[ref_i], sp.ODE!, sp.p, gradfunc, PotentialMap.DiffusionMatrix)
+    op = action(TotalPoint, TotalTime, steadies1[i], steadies1[ref_i], sp.ODE!, sp.p, gradfunc, LeastAction.DiffusionMatrix)
     push!(ops, op)
 
     @show op.lam

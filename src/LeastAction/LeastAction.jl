@@ -1,4 +1,4 @@
-module ATypeIntegral
+module LeastAction
 
 using FindSteadyStates
 using SteadyStateDiffEq

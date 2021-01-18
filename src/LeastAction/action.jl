@@ -46,12 +46,12 @@ function action(n_points, tmax, point_start, point_end, ode!, p, Jacobian, Diffu
     dt = tmax/n_points 
 
     # A straight line from A → B
-    initpath = linearpath(point_start, point_end, n_points)
+    initpath = LeastAction.linearpath(point_start, point_end, n_points)
     init_vec = reshape(initpath, 1, :)
 
     # Function of curve integration
     curve_func = curve_ind(integral, ode!, DiffusionMatrix, dt, dim, n_points, p, nothing)
-    g! = grad(Jacobian, dt, dim, n_points)
+    g! = grad!(Jacobian, dt, dim, n_points)
     
     op = optimize(curve_func, g!, init_vec, ConjugateGradient())
 
@@ -91,7 +91,7 @@ struct grad
     N 
 end
 
-function (self::grad)(G, x)
+function (self::grad!)(G, x)
     x_ = reshape(x, self.dim, self.N)
     
     m_jac = self.Jacobian(self.dt, x_)
