@@ -2,17 +2,17 @@ module PotentialMap
 
 using FindSteadyStates
 using SteadyStateDiffEq
-using NLsolve
 using LinearAlgebra
 using ModelingToolkit
+using ForwardDiff
+using Optim
+using Parameters
+using Reexport 
+
+include("LeastAction/LeastAction.jl")
 
 
-include("fixedpoint_gen.jl")
-include("DiffusionMatrix.jl")
-include("gradient_gen.jl")
+@reexport using .LeastAction
 
-
-export fixedpoint_gen
-export gradient_gen
 
 end

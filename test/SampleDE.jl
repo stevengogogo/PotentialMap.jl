@@ -27,8 +27,13 @@ function ODE!(du,u,p,t)
     du[2]=  1 - 11*u[1] + 2*u[1]^3 + 11*u[2] - 2*u[2]^3;
 end
 
+function ODE(u,p,t)
+    du = deepcopy(u)
+    return ODE!(du,u,p,t)
+end
+
 u0 = [1.0, 2.0]
-p_ = [2.0, 3.0]
+p = [2.0, 3.0]
 
 
 
