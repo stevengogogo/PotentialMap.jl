@@ -9,9 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version:
-          - '1.5'
-          - '1.6'
+        version: ['1.5', '1.6-nightly']
         os:
            #- [self-hosted, TWCC, Linux]
            #- self-hosted
