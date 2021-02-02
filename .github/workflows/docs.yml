@@ -6,7 +6,9 @@ on:
 jobs:
   docs:
     name: Documentation
-    runs-on: [self-hosted, TWCC]
+    runs-on: ubuntu-latest
+    env:
+      PYTHON: ''
     steps:
       - name: Setup python 
         uses: actions/setup-python@v2
